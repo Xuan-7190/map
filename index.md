@@ -1,37 +1,65 @@
-## Welcome to GitHub Pages
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeleK-Z7AgMbJ9ZOb-A3AtPKCgZeQvXkI&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
 
-You can use the [editor on GitHub](https://github.com/Xuan-7190/map/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+	var myLatLng;
+	var map;
+	var marker;
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+      function initMap() {
+	myLatLng = { lat: 25.016886, lng: 121.533491 }
 
-### Markdown
+        map = new google.maps.Map(document.getElementById("map"), {
+	zoom: 15,
+        center: myLatLng
+        });
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+	marker = new google.maps.Markers({
+		position: myLatLng ,
+		map: map,
+		title: 'Hello World!'
+	});
+      }
 
-```markdown
-Syntax highlighted code block
+function centerAt(latitude,longitude){
 
-# Header 1
-## Header 2
-### Header 3
+myLatLng = new google.maps.LatLng(latitude,longitude);
+marker.setMap(null);
+map.panTo(myLatLng);
 
-- Bulleted
-- List
+marker = new google.maps.Marker({
+position: myLatLng ,
+map: map,
+});
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Xuan-7190/map/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+	
+}
+	
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+</html>
